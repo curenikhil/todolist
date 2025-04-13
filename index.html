@@ -1,37 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="main">
-        <nav class="top">
-            <div class="logo">
-                <h3>TO-Do-list</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="nav-sidebar">
+            <div class="nav-icons">
+                <div class="home-icon icon">></div>
+                <div class="clear-icon icon" title="Clear all stored data">
+                    <i class="fa-solid fa-trash-alt"></i>
+                </div>
             </div>
         </nav>
-    <section class="toggle">
-        <p>
-            Total <span class="task-count"></span>
-        </p>
-        <p>
-         completed <span class="task-done"></span>
-        </p>
-        <p>
-            pending <span class="task-left"></span>
-        </p>
-        <button class="add-button">add task</button>
-    </section>
-    <section class="task-section">
-       <ol>
-       
-       </ol>
-    </section>
+
+        <!-- Main Sidebar -->
+        <aside class="main-sidebar">
+            <div class="sidebar-tabs">
+                <div class="tab today active">Today</div>
+                <div class="tab tomorrow">Tomorrow</div>
+                <div class="tab week">Next 7 Days</div>
+                <div class="tab completed">Completed</div>
+                <div class="tab trash">Trash</div>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="section-title">Lists</h3>
+                <ul class="section-items">
+                    <li class="section-item">+</li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="section-title">Tags</h3>
+                <ul class="section-items">
+                    <li class="section-item tag-item"><span class="tag-color work"></span>+</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <section class="header-section">
+                <div class="section-header">
+                    <div class="header-title">
+                        <h1>Today Activities</h1>
+                        <p>Manage your habits, reminders, and tasks.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="new-activity-btn">+ New Activity</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="habits-section">
+                <div class="section-header">
+                    <h2>Your Habits</h2>
+                </div>
+                <div class="habits-container">
+                    <!-- Example Habit Card (Commented)
+                    <div class="habit-card card" data-type="habit" data-title="Exercise" data-description="30 min run" data-time="07:00" data-streak="5">
+                        <div class="card-header">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="habit-checkbox">
+                            </div>
+                            <div class="card-actions">
+                                <button class="habit-comment" title="Add comment"><i class="fa-solid fa-comment"></i></button>
+                                <button class="habit-edit" title="Edit"><i class="fa-solid fa-edit"></i></button>
+                                <button class="habit-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title"><h3>Exercise</h3></div>
+                            <div class="card-description"><p>30 min run</p></div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="habit-time">07:00</span>
+                            <span class="card-meta">Streak: 5 days | Lists: Personal | Tags: Health</span>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </section>
+
+            <section class="reminders-section">
+                <div class="section-header">
+                    <h2>Reminders</h2>
+                </div>
+                <div class="reminders-container">
+                    <!-- Example Reminder Card (Commented)
+                    <div class="reminder-card card" data-type="reminder" data-title="Team Meeting" data-description="Discuss project" data-date="2025-04-13" data-time="14:00" data-status="Pending">
+                        <div class="card-header">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="reminder-checkbox">
+                            </div>
+                            <div class="card-actions">
+                                <button class="reminder-comment" title="Add comment"><i class="fa-solid fa-comment"></i></button>
+                                <button class="reminder-edit" title="Edit"><i class="fa-solid fa-edit"></i></button>
+                                <button class="reminder-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title"><h3>Team Meeting</h3></div>
+                            <div class="card-description"><p>Discuss project</p></div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="reminder-time">14:00</span>
+                            <span class="card-meta">Lists: Work | Tags: Meeting</span>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </section>
+
+            <section class="todo-section">
+                <div class="section-header">
+                    <h2>To Do List</h2>
+                </div>
+                <div class="todo-container">
+                    <div class="today-items">
+                        <!-- Example Today Card (Commented)
+                        <div class="todo-card card" data-type="todo" data-title="Grocery Shopping" data-description="Buy milk and eggs" data-date="2025-04-13" data-time="10:00" data-status="To Do" data-origin="todo">
+                            <div class="card-header">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="todo-check">
+                                </div>
+                                <div class="card-actions">
+                                    <button class="todo-comment" title="Add comment"><i class="fa-solid fa-comment"></i></button>
+                                    <button class="todo-edit" title="Edit"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="todo-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title"><h3>Grocery Shopping</h3></div>
+                                <div class="card-description"><p>Buy milk and eggs</p></div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="todo-time">10:00</span>
+                                <span class="card-meta">Date: Apr 13</span>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="tomorrow-items" style="display: none;">
+                        <!-- Example Tomorrow Card (Commented)
+                        <div class="todo-card card" data-type="todo" data-title="Dentist Appointment" data-description="Checkup" data-date="2025-04-14" data-time="15:00" data-status="To Do" data-origin="todo">
+                            <div class="card-header">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="todo-check">
+                                </div>
+                                <div class="card-actions">
+                                    <button class="todo-comment" title="Add comment"><i class="fa-solid fa-comment"></i></button>
+                                    <button class="todo-edit" title="Edit"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="todo-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title"><h3>Dentist Appointment</h3></div>
+                                <div class="card-description"><p>Checkup</p></div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="todo-time">15:00</span>
+                                <span class="card-meta">Date: Apr 14</span>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="week-items" style="display: none;">
+                        <!-- Example Next 7 Days Card (Commented)
+                        <div class="todo-card card" data-type="todo" data-title="Project Deadline" data-description="Submit report" data-date="2025-04-15" data-time="09:00" data-status="To Do" data-origin="todo">
+                            <div class="card-header">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="todo-check">
+                                </div>
+                                <div class="card-actions">
+                                    <button class="todo-comment" title="Add comment"><i class="fa-solid fa-comment"></i></button>
+                                    <button class="todo-edit" title="Edit"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="todo-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title"><h3>Project Deadline</h3></div>
+                                <div class="card-description"><p>Submit report</p></div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="todo-time">09:00</span>
+                                <span class="card-meta">Date: Apr 15</span>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="completed-items" style="display: none;">
+                        <!-- Example Completed Card (Commented)
+                        <div class="todo-card card" data-type="todo" data-title="Call Mom" data-description="Catch up" data-date="2025-04-13" data-time="18:00" data-status="Completed" data-origin="todo">
+                            <div class="card-header">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="todo-check" checked>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="todo-comment" title="Add comment"><i class="fa-solid fa-comment"></i></button>
+                                    <button class="todo-edit" title="Edit"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="todo-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title"><h3>Call Mom</h3></div>
+                                <div class="card-description"><p>Catch up</p></div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="todo-time">18:00</span>
+                                <span class="card-meta">Date: Apr 13</span>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="trash-items" style="display: none;">
+                        <!-- Example Trash Card (Commented)
+                        <div class="todo-card card" data-type="todo" data-title="Old Task" data-description="Removed task" data-date="2025-04-13" data-time="12:00" data-status="Deleted" data-origin="todo">
+                            <div class="card-header">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="todo-check">
+                                </div>
+                                <div class="card-actions">
+                                    <button class="todo-comment" title="Add comment"><i class="fa-solid fa-comment"></i></button>
+                                    <button class="todo-edit" title="Edit"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="todo-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title"><h3>Old Task</h3></div>
+                                <div class="card-description"><p>Removed task</p></div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="todo-time">12:00</span>
+                                <span class="card-meta">Date: Apr 13</span>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="sidebar-top">
+                <div class="clock-container">
+                    <div class="time-display"></div>
+                    <div class="date-display"></div>
+                    <div class="greeting">Hey <span class="username">User</span>, Good Morning</div>
+                    <div class="quote-container"></div>
+                </div>
+                <div class="task-stats">
+                    <h3>Task Overview</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Tasks:</span>
+                        <span class="stat-value total-tasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Completed:</span>
+                        <span class="stat-value completed-tasks">0</span>
+                    </div>
+                </div>
+                <div class="notification-settings">
+                    <h3>Reminder Notifications</h3>
+                    <div class="notification-options">
+                        <button class="notification-btn" data-minutes="5">5 Min</button>
+                        <button class="notification-btn" data-minutes="10">10 Min</button>
+                        <button class="notification-btn" data-minutes="15">15 Min</button>
+                        <button class="notification-btn active" data-minutes="30">30 Min</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ad-container"></div>
+        </aside>
     </div>
+
+    <!-- Form Overlay -->
+    <div class="form-overlay" id="activityFormOverlay" style="display: none;">
+        <div class="form-container">
+            <form id="newActivityForm">
+                <h2>New Activity</h2>
+                <div class="form-group">
+                    <label>Activity Type (Select one)</label>
+                    <div class="checkbox-group">
+                        <div>
+                            <input type="checkbox" name="activityType" value="habit" id="typeHabit">
+                            <label for="typeHabit">Habit</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="activityType" value="reminder" id="typeReminder">
+                            <label for="typeReminder">Reminder</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="activityType" value="todo" id="typeTodo">
+                            <label for="typeTodo">Todo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="activityTitle">Title</label>
+                    <input type="text" id="activityTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="activityDescription">Description</label>
+                    <textarea id="activityDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="activityDate">Date</label>
+                    <input type="date" id="activityDate">
+                </div>
+                <div class="form-group">
+                    <label for="activityTime">Time</label>
+                    <input type="time" id="activityTime">
+                </div>
+                <div class="form-group">
+                    <label>Lists</label>
+                    <div id="activityLists"></div>
+                </div>
+                <div class="form-group">
+                    <label>Tags</label>
+                    <div id="activityTags"></div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Create</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="notification-popup" id="notificationPopup" style="display: none;">
+        <div class="popup-header">
+            <h3>Upcoming Reminders</h3>
+            <button class="close-popup">X</button>
+        </div>
+        <div class="popup-cards"></div>
+    </div>
+
     <script src="script.js"></script>
-    
-  </body>
+</body>
 </html>

@@ -1,0 +1,27 @@
+[
+    {
+        "type": "image",
+        "src": "/ads/img.png",
+        "displayUrl": "example.com",
+        "actualUrl": "https://www.example.com/promo",
+        "duration": 5,
+        "frequency": 0.4
+    },
+
+    {
+        "type": "video",
+        "src": "/ads/video.mp4",
+        "displayUrl": "example.com",
+        "actualUrl": "https://www.example.com/",
+        "duration": 7,
+        "frequency": 0.3
+    },
+    {
+        "type": "youtube",
+        "src": "https://www.youtube.com/embed/xyz",
+        "displayUrl": "example.com",
+        "actualUrl": "https://www.example.com",
+        "duration": 6,
+        "frequency": 0.3
+    }
+]
